@@ -12,11 +12,13 @@ struct RelativeIndex {
 };
 class SearchServer {
 public:
-  SearchServer(InvertedIndex &idx) : _index(idx) {};
+  SearchServer(InvertedIndex &idx, int maxResponses = 10)
+      : _index(idx), _maxResponses(maxResponses) {};
 
   std::vector<std::vector<RelativeIndex>>
   search(const std::vector<std::string> &queries_input);
 
 private:
   InvertedIndex &_index;
+  int _maxResponses;
 };
